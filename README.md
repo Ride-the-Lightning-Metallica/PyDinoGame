@@ -1,2 +1,2 @@
 # PyDinoGame
-Clone of the game from Googlea 
+Clone of the game from Google
