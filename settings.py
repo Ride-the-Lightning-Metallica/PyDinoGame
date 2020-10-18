@@ -51,3 +51,6 @@ sounds['hit'] = load_sound('hit')
 sounds['jump'] = load_sound('wing')
 sounds['point'] = load_sound('point')
 sounds['defeat'] = load_sound('die')
+
+# Counter
+count = 0

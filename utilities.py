@@ -44,3 +44,13 @@ def load_sound(name, directory = 'audio'):
 		print('Cannot load sound: ' + name)
 		raise SystemExit(message)
 	return sound
+
+def draw_counter(text, size, surface_width):
+	pygame.font.init()
+
+	count = text
+	font = pygame.font.Font(None, size)
+	text = font.render(str(text), 1, (255, 255, 255))
+	textpos = text.get_rect(centerx = surface_width - text.get_width() - 20, centery = 20)
+
+	return text, textpos

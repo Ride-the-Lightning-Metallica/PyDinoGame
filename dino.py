@@ -2,6 +2,7 @@ import pygame
 import random
 
 from settings import *
+from utilities import *
 
 pygame.init()
 
@@ -14,7 +15,6 @@ show_welcome = True
 
 for index in range(3):
 	cactuses_coordinats.append([random.randrange(650, 900), cactus_y])
-
 
 def dino_jump():
 	global dino_y, make_jump, jump_counter
@@ -67,6 +67,9 @@ while True:
 
 	elif not show_welcome:
 		draw_dino_animation()
+		if type(round(count)) == int:
+			background.blit(*draw_counter(round(count), 23, SCREENWIDTH))
+		count += 0.1
 		
 		for cactus in cactuses_coordinats:
 			cactus[0] -= 4
