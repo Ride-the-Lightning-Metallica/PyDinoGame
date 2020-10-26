@@ -13,6 +13,7 @@ background = pygame.Surface(screen.get_size())
 screen.blit(background, (0, 0))
 show_welcome = True
 
+
 for index in range(3):
 	cactuses_coordinats.append([random.randrange(650, 900), cactus_y])
 
@@ -66,10 +67,17 @@ while True:
 		background.blit(images['dino_stand'], (dino_x, SCREENHEIGHT - 50 - images['dino_stand'].get_height()))
 
 	elif not show_welcome:
-		draw_dino_animation()
-		if type(round(count)) == int:
-			background.blit(*draw_counter(round(count), 23, SCREENWIDTH))
-		count += 0.1
+		draw_dino_animation()		
+		background.blit(*draw_counter(round(count), 23, SCREENWIDTH))
+
+		play_point_sound(count, sounds['point'])
+
+		count += 0.2
+		
+		if discharge_counter == 9:
+			discharge_counter = 0
+		else:
+			discharge_counter += 1
 		
 		for cactus in cactuses_coordinats:
 			cactus[0] -= 4

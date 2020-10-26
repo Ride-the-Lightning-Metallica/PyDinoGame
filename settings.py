@@ -5,12 +5,6 @@ FPS = 60
 SCREENWIDTH = 600
 SCREENHEIGHT = 300
 
-DINO_POSITIONS_LIST = (
-	'dino_stand.png',
-	'dino_right.png',
-	'dino_left.png'
-)
-
 
 # Images and sounds dicts
 images, sounds = {}, {}
@@ -22,9 +16,9 @@ images['gameover'] = load_image('gameover.png')
 images['ground'] = load_image('ground.jpg')
 
 # Add images of dino in different positions 
-images['dino_stand'] = load_image(DINO_POSITIONS_LIST[0])
-images['dino_right'] = load_image(DINO_POSITIONS_LIST[1])
-images['dino_left'] = load_image(DINO_POSITIONS_LIST[2])
+images['dino_stand'] = load_image('dino_stand.png')
+images['dino_right'] = load_image('dino_right.png')
+images['dino_left'] = load_image('dino_left.png')
 
 # Add image of cactus
 images['cactus'] = load_image('cactus.png')
@@ -54,3 +48,4 @@ sounds['defeat'] = load_sound('die')
 
 # Counter
 count = 0
+discharge_counter = 0

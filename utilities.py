@@ -54,3 +54,11 @@ def draw_counter(text, size, surface_width):
 	textpos = text.get_rect(centerx = surface_width - text.get_width() - 20, centery = 20)
 
 	return text, textpos
+
+
+def play_point_sound(count, sound):
+	count = round(count, 1)
+	result = str(round(count / 100, 2))[-1]
+	if '.0' in str(count) and result == '0':
+		sound.play()
+		
