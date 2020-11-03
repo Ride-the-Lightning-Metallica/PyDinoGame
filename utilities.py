@@ -1,6 +1,7 @@
 import sys
 import os
 import pygame
+import random
 
 
 def load_image(name, colorkey = None, directory = 'images'):
@@ -62,3 +63,37 @@ def play_point_sound(count, sound):
 	if '.0' in str(count) and result == '0':
 		sound.play()
 		
+
+def create_cactus_array(array, cactuses_x, cactus_y, class_):
+	for index in range(5):
+		for cactus_x in cactuses_x:
+			array.append(class_(cactus_y, cactus_x, 4))
+
+
+def find_radius(array, screen_width):
+	maximum = max([cactus.x for cactus in array])
+
+	if maximum < screen_width:
+		radius = screen_width
+		if radius - maximum < 50:
+			radius += 150
+
+	else:
+		radius = maximum
+
+		choice = random.randrange(0, 5)
+
+		if choice == 0:
+			radius += random.randrange(10, 15)
+		else:
+			radius += random.randrange(200, 350)
+
+	return radius
+
+
+def draw_array(array, screen_width):
+	for cactus in array:
+		check = cactus.move()
+		if not check:
+			radius = find_radius(array, screen_width)
+			cactus.return_self(radius)

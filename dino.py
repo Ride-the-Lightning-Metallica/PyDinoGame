@@ -13,27 +13,36 @@ background = pygame.Surface(screen.get_size())
 screen.blit(background, (0, 0))
 show_welcome = True
 
+class Cactus:
+	def __init__(self, cactus_y, cactus_x, speed):
+		self.image = images['cactus']
+		self.x = cactus_x
+		self.y = cactus_y
+		self.speed = speed
+		self.width = self.image.get_width()
 
-for index in range(3):
-	cactuses_coordinats.append([random.randrange(650, 900), cactus_y])
+	def move(self):
+		if self.x >= -self.width:
+			background.blit(self.image, (self.x, self.y))
+			self.x -= self.speed
+			return True
+			
+		else:
+			self.x = SCREENWIDTH + 100 + random.randrange(-80, 60)
+			return False
+
+	def return_self(self, radius):
+		self.x = radius
 
 def dino_jump():
 	global dino_y, make_jump, jump_counter
 	
-	if jump_counter >= -20:
+	if jump_counter >= -22:
 		dino_y -= jump_counter / 1.5
 		jump_counter -= 1
 	else:
-		jump_counter = 20
+		jump_counter = 22
 		make_jump = False
-
-
-def cactus_move():
-	global cactus_x
-	cactus_x -= 4
-
-	if cactus_x < 0:
-		cactus_x = SCREENWIDTH - 30
 
 
 def draw_dino_animation():
@@ -43,6 +52,8 @@ def draw_dino_animation():
 
 	background.blit(dino_images[image_counter // 11], (dino_x, dino_y + 10))
 	image_counter += 1
+		
+create_cactus_array(cactuses, cactuses_x, cactus_y, Cactus)
 
 
 while True:
@@ -53,7 +64,7 @@ while True:
 			show_welcome = False
 		elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:	
 			make_jump = True
-			if make_jump and jump_counter == 20:
+			if make_jump and jump_counter == 22:
 				sounds['jump'].play()
 			
 
@@ -73,20 +84,8 @@ while True:
 		play_point_sound(count, sounds['point'])
 
 		count += 0.2
-		
-		if discharge_counter == 9:
-			discharge_counter = 0
-		else:
-			discharge_counter += 1
-		
-		for cactus in cactuses_coordinats:
-			cactus[0] -= 4
 
-			if cactus[0] < -30:
-				cactus[0] = random.randrange(650, 900)
-			
-		for cactus in cactuses_coordinats:
-			background.blit(images['cactus'], (cactus[0], cactus_y))
+		draw_array(cactuses, SCREENWIDTH)
 
 		if make_jump:
 			dino_jump()

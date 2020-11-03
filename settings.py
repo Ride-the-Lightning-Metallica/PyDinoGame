@@ -28,7 +28,7 @@ images['cactus'] = load_image('cactus.png')
 dino_x = 10
 dino_y = SCREENHEIGHT - 60 - images['dino_right'].get_height()
 make_jump = False
-jump_counter = 20
+jump_counter = 22
 dino_right = True
 dino_images = [images['dino_right'], images['dino_left']]
 image_counter = 0
@@ -37,7 +37,9 @@ image_counter = 0
 # Cactus settings
 cactus_x = SCREENWIDTH - 30
 cactus_y = SCREENHEIGHT - 50 - images['cactus'].get_height()
-cactuses_coordinats = []
+cactuses = []
+cactuses_x = [cactus_x + SCREENWIDTH for additional_x in [30, 200, 430,
+																		 590, 750]]
 
 
 # Add sounds for collide with cactus, jump, point and defeat
