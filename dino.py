@@ -15,7 +15,7 @@ show_welcome = True
 
 dino = Dino(dino_x, dino_y)
 		
-create_cactus_array(cactuses, cactuses_x, cactus_y, Cactus, surface = background)
+create_cactus_array(cactuses, SCREENWIDTH, Cactus, surface = background)
 
 
 while True:

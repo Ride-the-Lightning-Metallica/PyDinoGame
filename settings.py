@@ -20,8 +20,11 @@ images['dino_stand'] = load_image('dino_stand.png')
 images['dino_right'] = load_image('dino_right.png')
 images['dino_left'] = load_image('dino_left.png')
 
-# Add image of cactus
-images['cactus'] = load_image('cactus.png')
+# Add images of cactus
+images['cactus_middle'] = load_image('cactus_middle.png')
+images['cactus_high'] = load_image('cactus_high.png')
+images['cactus_low'] = load_image('cactus_low.png')
+cactuses_images = [images['cactus_middle'], images['cactus_high'], images['cactus_low']]
 
 
 # Dino settings
@@ -31,11 +34,8 @@ dino_images = [images['dino_right'], images['dino_left']]
 
 
 # Cactus settings
-cactus_x = SCREENWIDTH - random.choice([30, 50, 70, 40])
-cactus_y = SCREENHEIGHT - 50 - images['cactus'].get_height()
 cactuses = []
-cactuses_x = [cactus_x + SCREENWIDTH for additional_x in [30, 200, 430,
-															590, 750]]
+
 
 # Add sounds for collide with cactus, jump, point and defeat
 sounds['hit'] = load_sound('hit')

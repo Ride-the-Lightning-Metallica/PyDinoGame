@@ -2,10 +2,10 @@ import settings
 import random
 
 class Cactus:
-	def __init__(self, cactus_x, cactus_y, speed):
-		self.image = settings.images['cactus']
-		self.x = cactus_x
-		self.y = cactus_y
+	def __init__(self, speed):
+		self.image = random.choice(settings.cactuses_images)
+		self.x = settings.SCREENWIDTH + 100 + random.randrange(-80, 60)
+		self.y = settings.SCREENHEIGHT - 50 - self.image.get_height()
 		self.speed = speed
 		self.width = self.image.get_width()
 
@@ -21,6 +21,10 @@ class Cactus:
 
 	def return_self(self, radius):
 		self.x = radius
+
+	def update_image(self):
+		self.image = random.choice(settings.cactuses_images)
+		self.y = settings.SCREENHEIGHT - 50 - self.image.get_height()
 
 class Dino:
 	def __init__(self, dino_x, dino_y):

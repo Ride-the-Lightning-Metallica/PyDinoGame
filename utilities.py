@@ -64,10 +64,11 @@ def play_point_sound(count, sound):
 		sound.play()
 		
 
-def create_cactus_array(array, cactuses_x, cactus_y, class_, surface):
+def create_cactus_array(array, screen_width, class_, surface):
 	for index in range(5):
-		for cactus_x in cactuses_x:
-			array.append(class_(cactus_x, cactus_y, 5))
+		array.append(class_(5))
+	for cactus in array:
+		cactus.x = find_radius(array, screen_width)
 
 
 def find_radius(array, screen_width):
@@ -96,5 +97,5 @@ def draw_array(array, screen_width, surface):
 		check = cactus.move(surface)
 		if not check:
 			radius = find_radius(array, screen_width)
+			cactus.update_image()
 			cactus.return_self(radius)
-			
