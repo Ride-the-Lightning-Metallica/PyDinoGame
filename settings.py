@@ -1,4 +1,4 @@
-from utilities import load_image, load_sound
+from utilities import load_image, load_sound, random
 
 # Settings for window
 FPS = 60
@@ -27,20 +27,15 @@ images['cactus'] = load_image('cactus.png')
 # Dino settings
 dino_x = 10
 dino_y = SCREENHEIGHT - 60 - images['dino_right'].get_height()
-make_jump = False
-jump_counter = 22
-dino_right = True
 dino_images = [images['dino_right'], images['dino_left']]
-image_counter = 0
 
 
 # Cactus settings
-cactus_x = SCREENWIDTH - 30
+cactus_x = SCREENWIDTH - random.choice([30, 50, 70, 40])
 cactus_y = SCREENHEIGHT - 50 - images['cactus'].get_height()
 cactuses = []
 cactuses_x = [cactus_x + SCREENWIDTH for additional_x in [30, 200, 430,
-																		 590, 750]]
-
+															590, 750]]
 
 # Add sounds for collide with cactus, jump, point and defeat
 sounds['hit'] = load_sound('hit')
@@ -50,4 +45,3 @@ sounds['defeat'] = load_sound('die')
 
 # Counter
 count = 0
-discharge_counter = 0
