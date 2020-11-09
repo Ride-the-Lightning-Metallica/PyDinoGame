@@ -1,11 +1,14 @@
 import settings
 import random
+import pygame
 
-class Cactus:
+class Cactus(pygame.sprite.Sprite):
 	def __init__(self, speed):
+		pygame.sprite.Sprite.__init__(self)
 		self.image = random.choice(settings.cactuses_images)
 		self.x = settings.SCREENWIDTH + 100 + random.randrange(-80, 60)
 		self.y = settings.SCREENHEIGHT - 50 - self.image.get_height()
+		self.rect = self.image.get_rect(center = (self.x, self.y))
 		self.speed = speed
 		self.width = self.image.get_width()
 
@@ -26,11 +29,16 @@ class Cactus:
 		self.image = random.choice(settings.cactuses_images)
 		self.y = settings.SCREENHEIGHT - 50 - self.image.get_height()
 
-class Dino:
+	def update(self):
+		self.rect.topleft = self.x, self.y
+
+class Dino(pygame.sprite.Sprite):
 	def __init__(self, dino_x, dino_y):
+		pygame.sprite.Sprite.__init__(self)
 		self.image = settings.images['dino_stand']
 		self.x = dino_x
 		self.y = dino_y + 10
+		self.rect = self.image.get_rect(center = (self.x, self.y))
 		self.make_jump = False
 		self.jump_counter = 22
 		self.image_counter = 0
@@ -53,3 +61,6 @@ class Dino:
 
 		surface.blit(images_array[self.image_counter // 11], (self.x, self.y))
 		self.image_counter += 1
+
+	def update(self):
+		self.rect.topleft = self.x, self.y

@@ -17,6 +17,8 @@ dino = Dino(dino_x, dino_y)
 		
 create_cactus_array(cactuses, SCREENWIDTH, Cactus, surface = background)
 
+all_sprites = pygame.sprite.RenderPlain(cactuses, dino)
+cactuses_sprites = pygame.sprite.RenderPlain(cactuses)
 
 while True:
 	for event in pygame.event.get():
@@ -47,6 +49,12 @@ while True:
 		count += 0.2
 
 		draw_array(cactuses, SCREENWIDTH, background)
+
+		all_sprites.update()
+		hits = pygame.sprite.spritecollide(dino, cactuses, False)
+
+		if hits:
+			print('You lose')
 
 		if dino.make_jump:
 			dino.jump()
