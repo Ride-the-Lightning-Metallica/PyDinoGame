@@ -54,7 +54,7 @@ while True:
 		hits = pygame.sprite.spritecollide(dino, cactuses, False)
 
 		if hits:
-			print('You lose')
+			pass
 
 		if dino.make_jump:
 			dino.jump()
