@@ -3,6 +3,7 @@ import os
 import pygame
 import random
 
+pygame.font.init()
 
 def load_image(name, colorkey = None, directory = 'images'):
 	"""Take one required argument and second optional argument.
@@ -47,8 +48,6 @@ def load_sound(name, directory = 'audio'):
 	return sound
 
 def draw_counter(text, size, surface_width):
-	pygame.font.init()
-
 	count = text
 	font = pygame.font.Font(None, size)
 	text = font.render(str(text), 1, (255, 255, 255))
@@ -92,10 +91,36 @@ def find_radius(array, screen_width):
 	return radius
 
 
-def draw_array(array, screen_width, surface):
+def draw_array(array, screen_width, surface, game_over):
 	for cactus in array:
-		check = cactus.move(surface)
-		if not check:
-			radius = find_radius(array, screen_width)
-			cactus.update_image()
-			cactus.return_self(radius)
+		if not game_over:			
+			check = cactus.move(surface)
+			if not check:
+				radius = find_radius(array, screen_width)
+				cactus.update_image()
+				cactus.return_self(radius)
+		else:
+			surface.blit(cactus.image, (cactus.x, cactus.y))
+
+
+def calculation_record(score, record):
+	if score > record:
+		record = score
+	return record
+
+
+def game_over(image, surface, count, font_size, record):
+	surface_centerx = surface.get_width() // 2
+	surface.blit(image, image.get_rect(centerx = surface_centerx, 
+				centery = surface.get_height() // 3))
+	score = count
+	font = pygame.font.SysFont(None, font_size, bold = True)
+	score_text = font.render('Score: ' + str(score), 1, (255, 255, 255))
+	record_text = font.render('Record: ' + str(record), 1, (255, 255, 255))
+	surface.blit(score_text, score_text.get_rect(centerx = surface_centerx, 
+				centery = surface.get_height() // 2))
+	surface.blit(record_text, record_text.get_rect(centerx = surface_centerx, 
+				centery = surface.get_height() // 1.5))
+
+def start_init():
+	pass

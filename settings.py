@@ -12,7 +12,7 @@ images, sounds = {}, {}
 # Add images for background, message(welcome message), game over(if player lose) and ground
 images['background'] = load_image('background.jpg')
 images['message'] = load_image('message.png', colorkey = (255, 255, 255))
-images['gameover'] = load_image('gameover.png')
+images['game_over'] = load_image('gameover.png')
 images['ground'] = load_image('ground.jpg')
 
 # Add images of dino in different positions 
@@ -43,5 +43,6 @@ sounds['jump'] = load_sound('wing')
 sounds['point'] = load_sound('point')
 sounds['defeat'] = load_sound('die')
 
-# Counter
+# Score
 count = 0
+record = 0
