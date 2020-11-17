@@ -12,7 +12,7 @@ clock = pygame.time.Clock()
 background = pygame.Surface(screen.get_size())
 screen.blit(background, (0, 0))
 show_welcome = True
-dino = None		
+dino = None
 
 while True:
 	for event in pygame.event.get():
@@ -44,6 +44,9 @@ while True:
 		draw_array(cactuses, SCREENWIDTH, background, True)
 		game_over(images['game_over'], background, round(count), font_size = 36, record = record)
 		background.blit(images['dino_stand'], (dino_x, dino_y + 10))
+		hits = []
+		cactuses = []
+
 
 	if show_welcome:
 		background.blit(images['message'], images['message'].get_rect())
@@ -64,8 +67,7 @@ while True:
 
 		if hits:
 			show_game_over = True
-			hits = []
-			cactuses = []
+			sounds['hit'].play()
 
 		if dino.make_jump:
 			dino.jump()
